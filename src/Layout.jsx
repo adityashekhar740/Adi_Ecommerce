@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Nav from "./components/Nav";
-import { Carousel } from 'flowbite-react';
 
 
 const Layout = () => {
