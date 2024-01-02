@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Features from './Features';
 import Function from './Function';
-import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { NavLink, useParams } from 'react-router-dom';
 import No_result from './No_result';
 import Styles from './Product_search.module.css'
