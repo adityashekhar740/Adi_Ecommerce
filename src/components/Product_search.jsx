@@ -5,16 +5,30 @@ import Function from './Function';
 import { NavLink, useParams } from 'react-router-dom';
 import No_result from './No_result';
 import Styles from './Product_search.module.css'
+import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import {useFaspc} from '../contexts/Faspc';
 
 
 const Products = ({search,setcustom,setget,get }) => {
+  const { AppliedFilters, setAppliedFilters,addPname,addSort } = useFaspc();
+  
+    
+
+
     const [result,setresult]=useState([]);
     const [fasp,setfasp]=useState(false);
     const {pname}=useParams();
     const url=`https://dummyjson.com/products/search?q=${pname}`
+      addPname(pname);
+      const anas=1;
+      addSort(anas);
+      console.log(AppliedFilters);
+    
+    
     
        
              useEffect(()=>{
+              setAppliedFilters([]);
               const cards = async ()=>{
         const raw= await axios.get(url);
         const res=  raw.data.products;
@@ -23,17 +37,11 @@ const Products = ({search,setcustom,setget,get }) => {
               }
               cards();
           },[pname])
-        // res?setresult(res):null;
-    
-    // if(get){
-    //     cards();
-    //     setget(false);
-    //     console.log(result);
-    // }
+     
        
   return (
     <>
-    {fasp ? <Function setfasp={setfasp} /> : null}
+    {fasp ? <Function setfasp={setfasp} fasp={fasp} /> : null}
     {(result.length)?<Features pname={pname} result={result}  />:<No_result pname={pname} />}
     
     {result?<div className='flex justify-center'>

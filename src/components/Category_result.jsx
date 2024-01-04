@@ -15,7 +15,7 @@ const Category_result = ({
   setcustom,
 }) => {
   const [catdata, setcatdata] = useState([]);
-  const [fasc,setfasc]=useState(false);
+  const [fascr,setfascr]=useState(false);
   const {i}=useParams();
 
   
@@ -35,7 +35,7 @@ const Category_result = ({
 
   return (
     <div>
-      {fasc ? <Function setfasc={setfasc} /> : null}
+      {fascr ? <Function fascr={fascr} setfascr={setfascr} /> : null}
       <Features i={i} catdata={catdata} />
 
       <div className="flex justify-center">

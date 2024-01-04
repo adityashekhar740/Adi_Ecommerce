@@ -20,7 +20,7 @@ const Mainproduct = () => {
   }, []);
   return (
     <div className="">
-      {fas ? <Function setfas={setfas} /> : null}
+      {fas ? <Function setfas={setfas} fas={fas} /> : null}
       <Features mpdt={all} />
       <div className=" h-[50px] flex justify-end w-[1225px] ml-[130px] mb-2  ">
         <div

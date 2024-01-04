@@ -11,6 +11,7 @@ import Product from './components/Product.jsx'
 import Category_result from './components/Category_result.jsx'
 import { AllProvider } from './contexts/All.jsx'
 import Cart from './components/Cart.jsx'
+import { FaspcProvider } from './contexts/Faspc.jsx'
 
 
 const router=createBrowserRouter(
@@ -19,7 +20,7 @@ const router=createBrowserRouter(
   createRoutesFromElements(
       <Route path="/" element={<Layout />} >
       <Route path="" element={<Home />}/>
-      <Route  path='products' element={<Mainproduct/>} />
+      <Route  path='/products' element={<Mainproduct/>} />
       <Route   exact path='search/:pname' element={<Product_search />} />         
       <Route  path='/products/product/:id' element={ <Product/> } />
       <Route path='/search/:pname/:id' element={<Product/>} />   
@@ -34,7 +35,9 @@ const router=createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AllProvider>
+      <FaspcProvider>
       <RouterProvider router={router}/>
+      </FaspcProvider>
     </AllProvider>
   </React.StrictMode>,
 )
