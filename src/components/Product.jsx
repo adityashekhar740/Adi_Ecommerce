@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GrNext } from "react-icons/gr";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import Styles from "./Product.module.css";
 import { GrLinkNext } from "react-icons/gr";
 import { CiHeart } from "react-icons/ci";
 import { useAll } from "../contexts/All";
+import { useFaspc } from "../contexts/Faspc";
 
 const Product = () => {
+  const navigate =useNavigate();
   const { datacart,setdatacart,addcart }=useAll();
   const { id } = useParams();
   const [pdata, setpdata] = useState({});
@@ -16,6 +18,11 @@ const Product = () => {
   // let raw= decodeURIComponent(pdt);
   // const decoded_string=raw.replace(/%20/g,' ');
 
+  const {defsort,setdefsort}=useFaspc();
+
+  const goback=()=>{
+    navigate(-1, {state:{ defsort }} );
+  }
   useEffect(() => {
     const pdtdata = async () => {
       const dat = await axios.get(`https://dummyjson.com/products/${id}`);
@@ -24,6 +31,8 @@ const Product = () => {
     };
     pdtdata();
   }, [id]);
+
+setdefsort(true);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -69,6 +78,9 @@ const Product = () => {
               </button>
             </div>
           </div>
+          <button onClick={()=>{
+            goback();
+          }} className="bg-red" >back</button>
           <div className="flex flex-col w-[670px] pl-5 ">
             <div className={Styles.head}>
               <span className="text-end">

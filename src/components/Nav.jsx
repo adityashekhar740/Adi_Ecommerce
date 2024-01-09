@@ -5,6 +5,7 @@ import { SlBag } from "react-icons/sl";
 import { PiMagnifyingGlassLight } from "react-icons/pi";
 import Dropdown from "./Dropdown";
 import { Link,NavLink } from "react-router-dom";
+import { useFaspc } from "../contexts/Faspc";
 
 const Nav = ({
   setsearch,
@@ -15,6 +16,7 @@ const Nav = ({
   setmulticategory,
   search,
 }) => {
+  const { defsort,setdefsort} = useFaspc();
   const [drop, setdrop] = useState(false);
   const [drop1, setdrop1] = useState(false);
   const [drop2, setdrop2] = useState(false);
@@ -190,7 +192,9 @@ const Nav = ({
               />
               <Link to={`/search/${search}`}>
                 <button
-                  onClick={() => {}}
+                  onClick={() => {
+                    setdefsort(false);
+                  }}
                   className="ml-3 bg-black text-white px-3 py-1 pb-[5px] rounded-sm"
                 >
                   search

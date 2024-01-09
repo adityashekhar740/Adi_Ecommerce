@@ -7,21 +7,24 @@ import No_result from './No_result';
 import Styles from './Product_search.module.css'
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import {useFaspc} from '../contexts/Faspc';
+import { useLocation } from 'react-router-dom';
 
 
 const Products = ({search,setcustom,setget,get }) => {
-  const { AppliedFilters, setAppliedFilters,addPname,addSort } = useFaspc();
+  const [fildata,setfildata]=useState([]);
+  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort} = useFaspc();
   
     
+const { state } = useLocation();
+var sort=state?state.defsort:null;
+// sort && setdefsort(sort);
+// defsort && console.log(defsort);
 
-
-    const [result,setresult]=useState([]);
+    
     const [fasp,setfasp]=useState(false);
     const {pname}=useParams();
     const url=`https://dummyjson.com/products/search?q=${pname}`
-      addPname(pname);
-      const anas=1;
-      addSort(anas);
+      addPname(pname);    
       console.log(AppliedFilters);
     
     
@@ -32,21 +35,27 @@ const Products = ({search,setcustom,setget,get }) => {
               const cards = async ()=>{
         const raw= await axios.get(url);
         const res=  raw.data.products;
-        setresult(res);
-        console.log(res);
+        if(!defsort){
+          console.log("updated");
+          setresult(res);
+        }
               }
               cards();
           },[pname])
      
+          
+
+          
        
   return (
     <>
-    {fasp ? <Function setfasp={setfasp} fasp={fasp} /> : null}
+    {fasp ? <Function setfasp={setfasp} fasp={fasp}   /> : null}
     {(result.length)?<Features pname={pname} result={result}  />:<No_result pname={pname} />}
     
     {result?<div className='flex justify-center'>
         <div className='w-[1200px]'>
-            <div className=" h-[50px] flex justify-end w-[1230px] ml-[130px] mb-2  ">
+            {/* <NavLink to={`/search/${pname}/filters`} > */}
+              <div className=" h-[50px] flex justify-end w-[1230px] ml-[130px] mb-2  ">
         {
           result.length?<div
           onClick={() => {
@@ -59,6 +68,7 @@ const Products = ({search,setcustom,setget,get }) => {
         </div>:null
         }
       </div>
+            {/* </NavLink> */}
 
             <div className='mt-3 flex gap-9 flex-wrap justify-center    w-[1240px] m-auto'>
             {

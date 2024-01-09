@@ -12,7 +12,7 @@ import Category_result from './components/Category_result.jsx'
 import { AllProvider } from './contexts/All.jsx'
 import Cart from './components/Cart.jsx'
 import { FaspcProvider } from './contexts/Faspc.jsx'
-
+import Function from './components/Function.jsx'
 
 const router=createBrowserRouter(
 
@@ -27,6 +27,7 @@ const router=createBrowserRouter(
       <Route   path='/category/:i/:id' element={<Product/>} />
       <Route path='/category/:i' element={<Category_result/>} />   
       <Route path='/cart' element={<Cart/>} />   
+      <Route  path='/search/:pname/filters' element={<Function/>} />
     </Route>
    
   )
