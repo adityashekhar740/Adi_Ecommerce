@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Styles from "./Function.module.css";
 import { useFaspc } from "../contexts/Faspc";
-import { NavLink, useNavigate } from "react-router-dom";
-import Checkbox from "./Checkbox";
 import ReactSlider from "react-slider";
 
 const Function = ({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {

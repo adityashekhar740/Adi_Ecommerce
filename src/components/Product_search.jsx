@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Features from './Features';
 import Function from './Function';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import No_result from './No_result';
 import Styles from './Product_search.module.css'
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 
 const Products = ({search,setcustom,setget,get }) => {
   const [fildata,setfildata]=useState([]);
-  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort,setresultCopy} = useFaspc();
+  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort} = useFaspc();
   
     
 const { state } = useLocation();
