@@ -1,4 +1,13 @@
-.modal,
+.modal{
+    width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 1%;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+}
+
 .overlay {
     width: 100vw;
     height: 100vh;
@@ -15,7 +24,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     top: 0;
     left: 67%;
     background: #f1f1f1;
@@ -26,4 +35,19 @@
 
 .modal{
     z-index: 3;
+}
+
+.horizontalslider{
+    height: 3px;
+    background: black;
+    margin-left: 11%;
+    width: 77%;
+    margin-top: 45px;
+}
+.thumb{
+    background: white;
+    border-radius: 50%;
+    border: solid black 2px;
+    padding: 10px;
+    margin-top: -10px;
 }
