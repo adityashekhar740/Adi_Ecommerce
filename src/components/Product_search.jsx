@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 
 const Products = ({search,setcustom,setget,get }) => {
   const [fildata,setfildata]=useState([]);
-  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort} = useFaspc();
+  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort,setresultCopy} = useFaspc();
   
     
 const { state } = useLocation();
