@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Features from "./Features";
-import Function from "./Function";
+import Function_main from "./Function_main";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { Link, NavLink } from 'react-router-dom';
 import Styles from './Mainproduct.module.css'
+import { useFasc } from "../contexts/Fasc";
 
 const Mainproduct = () => {
-  const [all, setall] = useState(null);
+  const {result,setresult,setresultCopy}=useFasc();
+  
   const [fas, setfas] = useState(false);
   useEffect(() => {
     const allproducts = async () => {
       const raw = await axios.get("https://dummyjson.com/products");
       await console.log(raw.data.products);
-      setall(raw.data.products);
-      console.log(all);
+      setresult(raw.data.products);      
+    setresultCopy(raw.data.products);
+
     };
     allproducts();
   }, []);
+
+
+
   return (
     <div className="">
-      {fas ? <Function setfas={setfas} fas={fas} /> : null}
-      <Features mpdt={all} />
+      {fas ? <Function_main setfas={setfas} fas={fas} /> : null}
+      <Features mpdt={result} />
       <div className=" h-[50px] flex justify-end w-[1225px] ml-[130px] mb-2  ">
         <div
           onClick={() => {
@@ -34,8 +40,8 @@ const Mainproduct = () => {
         </div>
       </div>
       <div className=" flex  flex-wrap justify-center w-[1240px] m-auto ">
-        {all
-          ? all.map((i) => (
+        {result
+          ? result.map((i) => (
               <NavLink to={`/products/product/${i.id}`} >
                 <div className="mx-4" key={i.id}>
                 <div className=" border-2 h-[365px] relative w-[375px] ">
@@ -45,7 +51,7 @@ const Mainproduct = () => {
                   <h2>{i.title}</h2>
                   <h2>
                     {" "}
-                    $ <b>{i.price}</b>
+                    ₹ <b>{i.price*84}</b>
                   </h2>
                 </div>
               </div>

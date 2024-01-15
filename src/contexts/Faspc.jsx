@@ -44,10 +44,19 @@ const addDis=(discount)=>{
 
 const updateDisSearch=(discount)=>{
 const newResult=[...resultCopy];
+console.log(minmax);
 const per=parseFloat(discount);
-const temp=newResult.filter((i)=>{
+var temp=newResult.filter((i)=>{
     return i.discountPercentage < per;
 })
+
+if(AppliedFilters.price){
+    const low=parseInt(minmax[0]*84);
+    const high=parseInt(minmax[1]*84);
+    const temp2=temp.filter((i)=>( i.price*84>=low && i.price*84<=high ));
+    temp=[...temp2];
+}
+
 if(AppliedFilters.sort){
      if(AppliedFilters.sort==="LOW-HIGH"){
      temp.sort((a,b)=>{

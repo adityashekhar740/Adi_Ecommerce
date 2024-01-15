@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useFascrc } from "../contexts/Fascrc";
 
 const Dropdown = ({
   x,
@@ -9,6 +10,7 @@ const Dropdown = ({
   setcustom,
 }) => {
   const [isclicked, setisclicked] = useState(false);
+  const {setdefsort}=useFascrc();
   return (
     <div
       onClick={() => {
@@ -21,10 +23,12 @@ const Dropdown = ({
         <NavLink to={`category/${i}`}>
           <h1
             onClick={() => {
-              setcategorysearch(true);
-              setmulticategory(true);
-              setcategory(i);
+              setdefsort(false);
+              // setcategorysearch(true);
+              // setmulticategory(true);
+              // setcategory(i);
               setcustom(false);
+
             }}
             className="p-3"
             key={key}

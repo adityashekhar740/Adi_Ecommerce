@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Styles from "./Function.module.css";
 import { useFaspc } from "../contexts/Faspc";
 import ReactSlider from "react-slider";
 
-const Function = ({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
+const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
   // const navigate=useNavigate();
   // const goback=()=>{
   //   navigate(-1);
@@ -55,6 +55,7 @@ const Function = ({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
   function handleprice(value) {
     updatePriceSearch(value);
   }
+  // fasp?console.log(fasp):null;
 
   return (
     <div className={Styles.modal}>
@@ -218,6 +219,6 @@ const Function = ({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Function;

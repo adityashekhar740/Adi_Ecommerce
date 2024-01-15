@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { lazy, useEffect, useState } from 'react'
 import axios from 'axios';
 import Features from './Features';
 import Function from './Function';
@@ -34,6 +34,7 @@ console.log(AppliedFilters);
               const cards = async ()=>{
         const raw= await axios.get(url);
         const res=  raw.data.products;
+        console.log(defsort);
         if(!defsort){
           console.log("updated");
           setresult(res);

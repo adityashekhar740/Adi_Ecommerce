@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Features from "./Features";
-import Function from "./Function";
+import Function_category from "./Function_category";
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { NavLink, useParams } from "react-router-dom";
 import Style from './Category_result.module.css';
+import { useFascrc } from "../contexts/Fascrc";
 
 const Category_result = ({
   category,
@@ -14,16 +15,25 @@ const Category_result = ({
   setmulticategory,
   setcustom,
 }) => {
-  const [catdata, setcatdata] = useState([]);
   const [fascr,setfascr]=useState(false);
   const {i}=useParams();
+  const {result, setresult,setresultCopy,AppliedFilters,defsort,setAppliedFilters}=useFascrc();
 
-  
+  // console.log(AppliedFilters);
   useEffect(()=>{
     const category_data = async () => {
     const raw = await axios.get(`https://dummyjson.com/products/category/${i}`);
-     setcatdata(raw.data.products);
-    catdata && console.log(catdata);
+    console.log(defsort);
+    console.log(AppliedFilters)
+      if(!defsort){
+        setAppliedFilters({});
+          console.log("updated");
+           setresult(raw.data.products);
+     setresultCopy(raw.data.products);
+        }
+        else{
+          console.log(AppliedFilters);
+        }
   };
   category_data();
   },[i])
@@ -35,8 +45,8 @@ const Category_result = ({
 
   return (
     <div>
-      {fascr ? <Function fascr={fascr} setfascr={setfascr} /> : null}
-      <Features i={i} catdata={catdata} />
+      {fascr ? <Function_category i={i} fascr={fascr} setfascr={setfascr} /> : null}
+      <Features i={i} result={result} />
 
       <div className="flex justify-center">
         <div className="w-[1200px]">
@@ -53,8 +63,8 @@ const Category_result = ({
       </div>
 
           <div className="mt-3 flex gap-10  flex-wrap justify-center">
-            {catdata
-              ? catdata.map((j) => (
+            {result
+              ? result.map((j) => (
                   <NavLink to={`/category/${i}/${j.id}`} >
                     <div key={j.id}>
                     <div className=" border-2 w-[365px] h-[375px]  ">
@@ -64,7 +74,7 @@ const Category_result = ({
                       <h2>{j.title}</h2>
                       <h2>
                         {" "}
-                        $ <b>{j.price}</b>
+                        ₹ <b>{j.price*84}</b>
                       </h2>
                     </div>
                   </div>
