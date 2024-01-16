@@ -8,19 +8,22 @@ import Styles from './Mainproduct.module.css'
 import { useFasc } from "../contexts/Fasc";
 
 const Mainproduct = () => {
-  const {result,setresult,setresultCopy}=useFasc();
+  const {result,setresult,setresultCopy,defsort,setdefsort,setrescopy}=useFasc();
   
   const [fas, setfas] = useState(false);
   useEffect(() => {
     const allproducts = async () => {
       const raw = await axios.get("https://dummyjson.com/products");
-      await console.log(raw.data.products);
-      setresult(raw.data.products);      
+     if(!defsort){
+       setresult(raw.data.products);      
     setresultCopy(raw.data.products);
+    setdefsort(true);
+    setrescopy(raw.data.products);
+     }
 
     };
     allproducts();
-  }, []);
+  },[]);
 
 
 

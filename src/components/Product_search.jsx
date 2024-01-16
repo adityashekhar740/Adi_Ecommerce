@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 
 const Products = ({search,setcustom,setget,get }) => {
   const [fildata,setfildata]=useState([]);
-  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,defsort,setdefsort,setresultCopy} = useFaspc();
+  const { AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,defsort,setdefsort,setresultCopy,rescopy,setrescopy} = useFaspc();
   
     
 const { state } = useLocation();
@@ -34,11 +34,11 @@ console.log(AppliedFilters);
               const cards = async ()=>{
         const raw= await axios.get(url);
         const res=  raw.data.products;
-        console.log(defsort);
         if(!defsort){
           console.log("updated");
-          setresult(res);
           setresultCopy(res);
+          setresult(res);
+          setrescopy(res);
         }
         else{
           console.log(AppliedFilters);
@@ -46,7 +46,9 @@ console.log(AppliedFilters);
               }
               cards();
           },[pname])
-     
+
+  
+          
           
 
           

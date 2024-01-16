@@ -17,7 +17,7 @@ const Category_result = ({
 }) => {
   const [fascr,setfascr]=useState(false);
   const {i}=useParams();
-  const {result, setresult,setresultCopy,AppliedFilters,defsort,setAppliedFilters}=useFascrc();
+  const {result, setresult,setresultCopy,AppliedFilters,defsort,setAppliedFilters,setrescopy}=useFascrc();
 
   // console.log(AppliedFilters);
   useEffect(()=>{
@@ -30,6 +30,7 @@ const Category_result = ({
           console.log("updated");
            setresult(raw.data.products);
      setresultCopy(raw.data.products);
+     setrescopy(raw.data.products);
         }
         else{
           console.log(AppliedFilters);

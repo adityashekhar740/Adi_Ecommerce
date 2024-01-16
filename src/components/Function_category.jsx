@@ -29,6 +29,7 @@ const Function = memo(({ i , setfas, setfasp, setfascr, fascr, fas, fasp }) => {
     minmax,
     setminmax,
     updatePriceSearch,
+    rescopy
   } = useFascrc();
 
   const handlecheck = (e) => {
@@ -50,15 +51,16 @@ const Function = memo(({ i , setfas, setfasp, setfascr, fascr, fas, fasp }) => {
     }
   }, [result]);
 
-  useEffect(() => {
-    //   console.log(AppliedFilters);
-    //  console.log(minmax);
-  }, [AppliedFilters, minmax]);
+
 
   function handleprice(value) {
     updatePriceSearch(value);
   }
-  fasp?console.log(fasp):null;
+
+  const handleclear=()=>{
+    setAppliedFilters({});
+    setresult(rescopy);
+  }
 
   return (
     <div className={Styles.modal}>
@@ -76,7 +78,13 @@ const Function = memo(({ i , setfas, setfasp, setfascr, fascr, fas, fasp }) => {
             <h1 className="font-bold">Filter & Sort</h1>
           </div>
 
-          <div
+          <div className="flex gap-2 "  >
+             <div onClick={()=>{
+              handleclear();
+            }} className="color-[black] underline pt-4 cursor-pointer " >
+              Clear All
+            </div>
+            <div
             onClick={() => {
               fas ? setfas(false) : null;
               fasp ? setfasp(false) : null;
@@ -86,6 +94,7 @@ const Function = memo(({ i , setfas, setfasp, setfascr, fascr, fas, fasp }) => {
             className=" cursor-pointer mt-[2] pl-3 text-[37px] w-[50px]"
           >
             &times;
+          </div>
           </div>
         </div>
         <div className="h-[140px] max-w-[400px]  ">

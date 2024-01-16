@@ -4,21 +4,10 @@ import ReactSlider from "react-slider";
 import { useFasc } from "../contexts/Fasc";
 
 const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
-  // const navigate=useNavigate();
-  // const goback=()=>{
-  //   navigate(-1);
-  //   // navigate.preventdefault();
-
-  // }
-
-  const [ispressed, setispressed] = useState(false);
 
   const {
     AppliedFilters,
     setAppliedFilters,
-    addPname,
-    addSort,
-    updateSearch,
     setresult,
     result,
     handlesort,
@@ -27,6 +16,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
     minmax,
     setminmax,
     updatePriceSearch,
+    rescopy
   } = useFasc();
 
   const handlecheck = (e) => {
@@ -47,16 +37,13 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
     }
   }, [result]);
 
-  useEffect(() => {
-    //   console.log(AppliedFilters);
-    //  console.log(minmax);
-  }, [AppliedFilters, minmax]);
-
   function handleprice(value) {
     updatePriceSearch(value);
   }
-  fasp?console.log(fasp):null;
-
+  const handleclear=()=>{
+    setAppliedFilters({});
+    setresult(rescopy);
+  }
   return (
     <div className={Styles.modal}>
       <div
@@ -73,7 +60,13 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
             <h1 className="font-bold">Filter & Sort</h1>
           </div>
 
-          <div
+          <div className="flex gap-2 "  >
+             <div onClick={()=>{
+              handleclear();
+            }} className="color-[black] underline pt-4 cursor-pointer " >
+              Clear All
+            </div>
+            <div
             onClick={() => {
               fas ? setfas(false) : null;
               fasp ? setfasp(false) : null;
@@ -84,11 +77,11 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
           >
             &times;
           </div>
+          </div>
         </div>
         <div className="h-[140px] max-w-[400px]  ">
           <h1 className="font-bold pl-5  ">Applied Filters</h1>
           <div className="flex  gap-3 p-5 flex-wrap ">
-            
             <div className="bg-[#d3d7da] w-[36%] h-[34px] py-1 px-4 text-center ">
               {AppliedFilters.sort && AppliedFilters.sort}
             </div>
@@ -96,7 +89,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
               {AppliedFilters.discount && AppliedFilters.discount}
             </div>
             <div className="bg-[#d3d7da] w-[65%] h-[34px] py-1 px-4 text-center">
-              {AppliedFilters.price &&  AppliedFilters.price}
+              {AppliedFilters.price && AppliedFilters.price}
             </div>
           </div>
         </div>
@@ -134,7 +127,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
         <div>
           <legend className="pl-5 font-bold ">DISCOUNT</legend>
           <div className="flex flex-col gap-3">
-            <div className="ml-5 text-[18px] mt-3 " >
+            <div className="ml-5 text-[18px] mt-3 ">
               {" "}
               <input
                 onChange={(e) => {
@@ -147,7 +140,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
               />
               <label htmlFor="10%">10%</label>
             </div>
-            <div className="ml-5 text-[18px]" >
+            <div className="ml-5 text-[18px]">
               {" "}
               <input
                 onChange={(e) => {
@@ -160,7 +153,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
               />
               <label htmlFor="15%">15%</label>
             </div>
-            <div className="ml-5 text-[18px]" >
+            <div className="ml-5 text-[18px]">
               {" "}
               <input
                 onChange={(e) => {
@@ -173,7 +166,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
               />
               <label htmlFor="20%">20%</label>
             </div>
-            <div className="ml-5 text-[18px]" >
+            <div className="ml-5 text-[18px]">
               <input
                 onChange={(e) => {
                   console.log(e.target.value);
@@ -189,9 +182,13 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
           </div>
         </div>
         <div>
-          <label className="font-bold pl-5" htmlFor="">PRICE</label>
+          <label className="font-bold pl-5" htmlFor="">
+            PRICE
+          </label>
           <br />
-          <h1 className="ml-[35%]" >₹{ minmax[0]*84} - ₹{ minmax[1]*84}</h1>
+          <h1 className="ml-[35%]">
+            ₹{minmax[0] * 84} - ₹{minmax[1] * 84}
+          </h1>
 
           {minmax[0] && minmax[1] && (
             <ReactSlider
@@ -203,9 +200,7 @@ const Function = memo(({ setfas, setfasp, setfascr, fascr, fas, fasp }) => {
               min={minmax[0] * 84}
               max={minmax[1] * 84}
               ariaLabel={["Leftmost thumb", "Rightmost thumb"]}
-              renderThumb={(props, state) => (
-                <div {...props}  ></div>
-              )}
+              renderThumb={(props, state) => <div {...props}></div>}
               pearling
               minDistance={50}
             />

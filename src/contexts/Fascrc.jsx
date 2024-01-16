@@ -9,6 +9,7 @@ function FascrcProvider({children}){
     const [resultCopy,setresultCopy]=useState([]);
     const [defsort,setdefsort]=useState(false);
     const [minmax,setminmax]=useState([]);
+        const [rescopy,setrescopy]=useState(null);
 const [AppliedFilters, setAppliedFilters] = useState({
     pname:"",
     sort:"",
@@ -117,7 +118,7 @@ const updateSearch=(type)=>{
 }
 return(
    
-    <Fascrc.Provider value={{ AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,handlesort,defsort,setdefsort,addDis,updateDisSearch,setresultCopy,minmax,setminmax,updatePriceSearch }}>
+    <Fascrc.Provider value={{ AppliedFilters, setAppliedFilters,addPname,addSort,result,setresult,updateSearch,handlesort,defsort,setdefsort,addDis,updateDisSearch,setresultCopy,minmax,setminmax,updatePriceSearch,rescopy,setrescopy }}>
       {children}
     </Fascrc.Provider>
 )

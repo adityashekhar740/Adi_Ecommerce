@@ -32,7 +32,9 @@ const Product = () => {
     pdtdata();
   }, [id]);
 
-setdefsort(true);
+if(!defsort){
+  setdefsort(true);
+}
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
