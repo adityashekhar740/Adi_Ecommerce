@@ -8,6 +8,7 @@ import { GrLinkNext } from "react-icons/gr";
 import { CiHeart } from "react-icons/ci";
 import { useAll } from "../contexts/All";
 import { useFaspc } from "../contexts/Faspc";
+import Alternative_list from "./Alternative_list";
 
 const Product = () => {
   const navigate =useNavigate();
@@ -15,6 +16,7 @@ const Product = () => {
   const { id } = useParams();
   const [pdata, setpdata] = useState({});
   const [images, setimages] = useState([]);
+  const [alter,setalter]=useState(false);
   // let raw= decodeURIComponent(pdt);
   // const decoded_string=raw.replace(/%20/g,' ');
 
@@ -31,6 +33,10 @@ const Product = () => {
     };
     pdtdata();
   }, [id]);
+
+  useEffect(()=>{
+    setalter(false);
+  },[id])
 
 if(!defsort){
   setdefsort(true);
@@ -55,10 +61,15 @@ if(!defsort){
     console.log(datacart);
   }
 
+  const handlealternative=()=>{
+    setalter(true);
+  }
+
   return (
     <>
       {pdata ? (
-        <div className="flex gap-1">
+        <div>
+          <div className="flex gap-1">
           <div className="carousel-container relative p-1  ">
             <img
               className="w-[800px] h-[90vh]"
@@ -80,10 +91,10 @@ if(!defsort){
               </button>
             </div>
           </div>
-          <button onClick={()=>{
-            goback();
-          }} className="bg-red" >back</button>
+          
           <div className="flex flex-col w-[670px] pl-5 ">
+    <div className="underline cursor-pointer text-[18px] ml-[-12px] mt-2  "   onClick={goback} > ◀️Back  </div>
+
             <div className={Styles.head}>
               <span className="text-end">
                 <h1 className="font-semibold  ">rating:{pdata.rating}/5.0</h1>
@@ -122,11 +133,22 @@ if(!defsort){
               <button className={Styles.wishbtn}>
                 <CiHeart className="ml-[9px] text-[30px]  text-[red]  " />
               </button>
-              <button className={Styles.altbtn}>FIND ALTERNATIVES<GrLinkNext className="absolute left-[87%] top-[31%] text-[23px] " /></button>
+              <button onClick={
+                handlealternative
+              } className={Styles.altbtn}>{alter?<h1>SCROLL DOWN</h1>:'FIND ALTERNATIVES'}<GrLinkNext className="absolute left-[87%] top-[31%] text-[23px] " /></button>
             </div>
           </div>
+          
+        </div>
+        {
+            (alter? <div className="w-[100%] h-[70vh]  mt-[70px] " >
+                <h1 className="text-[2rem] font-semibold ml-[70px]  " >YOU MAY ALSO LIKE</h1>
+                <Alternative_list category={pdata.category} />
+            </div>:null )
+          }
         </div>
       ) : null}
+
     </>
   );
 };

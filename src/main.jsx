@@ -35,6 +35,7 @@ const router = createBrowserRouter(
       <Route path="/category/:i" element={<Category_result />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/search/:pname/filters" element={<Function />} />
+      <Route path="/alternative/:id" element={<Product/>} />
     </Route>
   )
 );

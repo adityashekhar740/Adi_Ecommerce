@@ -93,7 +93,7 @@ const Cart = () => {
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
-                    <h1 className="absolute left-[610px] top-[14px] text-[17px] font-semibold ">
+                    <h1 className="absolute left-[595px] top-[14px] text-[17px] font-semibold ">
                       {" "}
                       ₹{(i.price * 84).toFixed(2)}
                     </h1>
