@@ -103,7 +103,7 @@ if(!defsort){
             </div>
             <h1 className={Styles.title}>{pdata.title}</h1>
             <span className="mb-5">◾{pdata.category}</span>
-            <span className="text-[#363738]">MRP in Indian Currency</span>
+            <span className="text-[#363738]">MRP ggg in Indian Currency</span>
 
             <span>
               <span className="text-[#363738] font-semibold relative text-[20px]">
