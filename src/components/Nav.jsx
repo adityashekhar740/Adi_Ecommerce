@@ -6,6 +6,7 @@ import { PiMagnifyingGlassLight } from "react-icons/pi";
 import Dropdown from "./Dropdown";
 import { Link,NavLink } from "react-router-dom";
 import { useFaspc } from "../contexts/Faspc";
+import Styles from './Nav.module.css';
 
 const Nav = ({
   setsearch,
@@ -36,7 +37,7 @@ const Nav = ({
   const gadgets = ["laptops", "smartphones", "mens-watches", "womens-watches"];
   const exclusive = ["skincare", "groceries", "motorcycle", "automotive"];
   return (
-    <div className=" bg-white  ">
+    <div className= {Styles.container}>
       <div className="bg-black h-[30px]"></div>
       <div className="h-[80px] border flex justify-between pt-4 ml-3 items-end ">
         <img
@@ -44,6 +45,7 @@ const Nav = ({
           width={70}
           src="https://cdn-icons-png.flaticon.com/512/731/731962.png"
         />
+        
         <div className="flex w-[1045px] mb-3 justify-between">
           <div className="flex gap-7">
             <div
