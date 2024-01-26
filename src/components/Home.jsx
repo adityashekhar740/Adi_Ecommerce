@@ -12,6 +12,7 @@ const Home = () => {
       <div className={Styles.homepc} >
         <img  width="100%"    src={homepic} alt="" />
       </div>
+      <h1 className=' text-white absolute text-[44px] font-bold  left-[9%] top-[50%]' >DARE TO EXPLORE</h1>
       <NavLink to={'/products'} >
         <button className='absolute top-[70%] left-[15%] w-[190px]  flex gap-7   bg-[#000000ea] text-[white] px-4 py-2 rounded text-[19px] ' >SHOP NOW<GrLinkNext className="mt-1 " /></button>
       </NavLink>
