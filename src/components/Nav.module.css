@@ -1,13 +1,14 @@
 .container{
     /* background: white; */
     width: 100%;
+    border-bottom: 0.5px solid rgb(240, 240, 240);
 }
 .hamburger{
     display: none;
 }
 .menu{
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 .logo{
     height: 80px;

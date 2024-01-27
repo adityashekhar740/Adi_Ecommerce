@@ -31,7 +31,7 @@ const Mainproduct = () => {
     <div className="">
       {fas ? <Function_main setfas={setfas} fas={fas} /> : null}
       <Features mpdt={result} />
-      <div className=" h-[50px] flex justify-end w-[1225px] ml-[130px] mb-2  ">
+      <div className=" h-[50px] flex justify-end max-w-[1225px] mx-auto mb-2  ">
         <div
           onClick={() => {
             setfas(true);
@@ -42,12 +42,12 @@ const Mainproduct = () => {
           <HiOutlineAdjustmentsHorizontal className="text-[25px]" />
         </div>
       </div>
-      <div className=" flex  flex-wrap justify-center w-[1240px] m-auto ">
+      <div className=" flex gap-y-8 gap-4 flex-wrap  justify-center w-[90%] m-auto ">
         {result
           ? result.map((i) => (
               <NavLink to={`/products/product/${i.id}`} >
-                <div className="mx-4" key={i.id}>
-                <div className=" border-2 h-[365px] relative w-[375px] ">
+                <div className={Styles.card} key={i.id}>
+                <div className=" border-2 h-[365px] relative w-[375px]  ">
                   <img className={Styles.imgg} src={i.thumbnail} width={365}  alt="gg" />
                 </div>
                 <div className="bg-[#d3d7da] flex justify-between p-1">
