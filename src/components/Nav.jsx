@@ -7,6 +7,8 @@ import Dropdown from "./Dropdown";
 import { Link,NavLink } from "react-router-dom";
 import { useFaspc } from "../contexts/Faspc";
 import Styles from './Nav.module.css';
+import { IoMdMenu } from "react-icons/io";
+
 
 const Nav = ({
   setsearch,
@@ -24,6 +26,7 @@ const Nav = ({
   const [drop3, setdrop3] = useState(false);
   const [drop4, setdrop4] = useState(false);
   const [drop5, setdrop5] = useState(false);
+  const [loadmenu,setloadmenu]=useState(false);
   const men = ["mens-shirt", "mens-shoes", "mens-watches"];
   const women = [
     "womens-dresses",
@@ -37,9 +40,22 @@ const Nav = ({
   const gadgets = ["laptops", "smartphones", "mens-watches", "womens-watches"];
   const exclusive = ["skincare", "groceries", "motorcycle", "automotive"];
   return (
+  
     <div className= {Styles.container}>
+      {
+        loadmenu?<div className={Styles.mobilemenu}>
+          <div onClick={()=>{setloadmenu(false)}} className="ml-[90%] text-[40px] " >&times;</div>
+          <ul>
+
+          </ul>
+        </div>:null
+      }
       <div className="bg-black h-[30px]"></div>
-      <div className="h-[80px] border flex justify-between pt-4 ml-3 items-end ">
+      <div onClick={()=>{
+        setloadmenu(true)
+      }} className={Styles.hamburger} ><IoMdMenu />
+</div>
+      <div className={Styles.logo}>
         <img
           height={80}
           width={70}
@@ -47,7 +63,7 @@ const Nav = ({
         />
         
         <div className="flex w-[1045px] mb-3 justify-between">
-          <div className="flex gap-7">
+          <div className={Styles.menu}>
             <div
               className="cursor-pointer relative"
               onClick={() => {
@@ -179,8 +195,8 @@ const Nav = ({
               )}
             </div>
           </div>
-          <div className="flex gap-3 mr-6">
-            <div className="relative">
+          <div className={Styles.navbtncon}>
+            <div className={Styles.search}>
               <PiMagnifyingGlassLight className="absolute left-[62%] top-[7px] text-[20px] " />
               <input
                 onChange={(e) => {
@@ -204,11 +220,13 @@ const Nav = ({
               </Link>
             </div>
 
-            <CiUser className="text-[30px]" />
+            <div className={Styles.navbtn} >
+              <CiUser className="text-[30px]" />
             <CiHeart className="text-[30px]" />
             <NavLink to={'/cart'} >
               <SlBag className="text-[24px] mt-[1px] cursor-pointer " />
             </NavLink>
+            </div>
           </div>
         </div>
       </div>

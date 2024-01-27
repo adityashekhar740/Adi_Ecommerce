@@ -2,8 +2,9 @@
     /* height:100vh; */
     /* width: 80%; */
     /* border: 1px solid red; */
+    
     img{
-        object-fit: cover;
+        /* object-fit: cover; */
             height: 90vh;
     }
     
@@ -12,9 +13,9 @@
 
 
 
-@media screen and (max-width:970px) {
+@media screen and (max-width:980px) {
     img{
-        width: 970px;
+        width: 100%;
         object-fit: cover;
     }
 }
